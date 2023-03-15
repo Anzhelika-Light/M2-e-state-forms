@@ -32,17 +32,14 @@
   border-radius: 5px;
   padding: 10px 15px;
   text-align: center;
+
+  &:first-child {
+    margin-bottom: 10px;
+  }
 }
 
 .btn:hover,
 .btn:focus {
   background-color: red;
   color: #fff;
-}
-
-.list {
-  list-style: none;
-}
-
-.list-item {
 }

@@ -7,7 +7,7 @@ import Block from './Block';
 class Vote extends Component {
   state = {
     democrate: 0,
-    republic: 0,
+    republicans: 0,
   };
 
   leaveVote = propertyName => {
@@ -20,8 +20,8 @@ class Vote extends Component {
   };
 
   countTotal() {
-    const { democrate, republic } = this.state;
-    return democrate + republic;
+    const { democrate, republicans } = this.state;
+    return democrate + republicans;
   }
 
   countPercentage = propertyName => {
@@ -35,22 +35,25 @@ class Vote extends Component {
   };
 
   render() {
-    const { democrate, republic } = this.state;
+    const { democrate, republicans } = this.state;
 
     const total = this.countTotal();
     const democratePercentage = this.countPercentage('democrate');
-    const republicPercentage = this.countPercentage('republic');
+    const republicPercentage = this.countPercentage('republicans');
 
     return (
       <div className={styles.wrapper}>
         <Block title="Vote, please">
-          <VoteActions leaveVote={this.leaveVote} />
+          <VoteActions
+            options={Object.keys(this.state)}
+            leaveVote={this.leaveVote}
+          />
         </Block>
         <Block title="Statistics">
           <VoteResults
             total={total}
             democrate={democrate}
-            republic={republic}
+            republicans={republicans}
             democratePercentage={democratePercentage}
             republicPercentage={republicPercentage}
           />

@@ -1,10 +1,23 @@
+import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 import styles from './vote.module.scss';
 
-const VoteActions = ({ leaveVote }) => {
+const VoteActions = ({ options, leaveVote }) => {
+  const element = options.map(option => (
+    <button
+      key={nanoid()}
+      type="button"
+      className={styles.btn}
+      onClick={() => leaveVote(option)}
+    >
+      For the {option}
+    </button>
+  ));
   return (
     <>
       <div className={styles.element}>
-        <button
+        {element}
+        {/* <button
           type="button"
           className={styles.btn}
           onClick={() => leaveVote('republic')}
@@ -19,10 +32,19 @@ const VoteActions = ({ leaveVote }) => {
           onClick={() => leaveVote('democrate')}
         >
           For Democrats
-        </button>
+        </button> */}
       </div>
     </>
   );
+};
+
+VoteActions.defaultProps = {
+  options: [],
+};
+
+VoteActions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string.isRequired),
+  leaveVote: PropTypes.func.isRequired,
 };
 
 export default VoteActions;

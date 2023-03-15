@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import styles from './vote.module.scss';
 
 const VoteResults = ({
   total,
   democrate,
-  republic,
+  republicans,
   democratePercentage,
   republicPercentage,
 }) => {
@@ -12,7 +13,7 @@ const VoteResults = ({
       <div className={styles.element}>
         For Republicans:
         <ul>
-          <li>Total: {republic}</li>
+          <li>Total: {republicans}</li>
           <li>Percentage: {republicPercentage}%</li>
         </ul>
       </div>
@@ -26,6 +27,14 @@ const VoteResults = ({
       <div className={styles.element}>Total: {total} votes</div>
     </>
   );
+};
+
+VoteResults.propTypes = {
+  total: PropTypes.number.isRequired,
+  democrate: PropTypes.number.isRequired,
+  republicans: PropTypes.number.isRequired,
+  democratePercentage: PropTypes.number.isRequired,
+  republicPercentage: PropTypes.number.isRequired,
 };
 
 export default VoteResults;
